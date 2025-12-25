@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>bw_sim2real</name>
+  <version>0.0.0</version>
+  <description>TODO: Package description</description>
+  <maintainer email="menlinyan@gmail.com">menlin</maintainer>
+  <license>TODO: License declaration</license>
+
+
+  <!-- 1. 核心依赖 -->
+  <depend>rclpy</depend>
+  <depend>geometry_msgs</depend>
+  <depend>message_filters</depend>
+  
+  <!-- 2. 消息依赖 (脚本中 import 了 sensor_msgs 和 std_msgs) -->
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+  <!-- 3. MoveIt 工具 (因为使用了 MoveItConfigsBuilder)
+  <exec_depend>moveit_configs_utils</exec_depend>
+  <exec_depend>mantis_moveit_config</exec_depend> -->
+
+  <!-- 4. 机器人描述与工具 -->
+  <exec_depend>mantis_description</exec_depend>
+  <exec_depend>urdf</exec_depend>
+  <exec_depend>xacro</exec_depend>
+
+  <!-- 5. 运行时节点与工具 -->
+  <exec_depend>joint_state_publisher</exec_depend> 
+  <exec_depend>joint_state_publisher_gui</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  
+  <!-- 6. 可视化 -->
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>rviz_common</exec_depend>
+  <exec_depend>rviz_default_plugins</exec_depend>
+
+  <!-- 测试依赖 -->
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

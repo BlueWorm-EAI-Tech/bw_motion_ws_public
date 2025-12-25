@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "format": "bw_sim2real_keyframes_v1",
+    "joint_names": [
+      "L_Shoulder_Pitch_Joint",
+      "L_Shoulder_Yaw_Joint",
+      "L_Shoulder_Roll_Joint",
+      "L_Elbow_Pitch_Joint",
+      "L_Wrist_Roll_Joint",
+      "L_Wrist_Pitch_Joint",
+      "L_Wrist_Yaw_Joint",
+      "R_Shoulder_Pitch_Joint",
+      "R_Shoulder_Yaw_Joint",
+      "R_Shoulder_Roll_Joint",
+      "R_Elbow_Pitch_Joint",
+      "R_Wrist_Roll_Joint",
+      "R_Wrist_Pitch_Joint",
+      "R_Wrist_Yaw_Joint"
+    ],
+    "record_source": "control",
+    "created_unix": 1766046430.3843484
+  },
+  "keyframes": [
+    [
+      0.08,
+      0.09,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.08,
+      0.09,
+      0.0,
+      -0.39,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      -0.55,
+      0.83,
+      -0.44,
+      -0.39,
+      0.09,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -1.42,
+      0.16,
+      0.0
+    ]
+  ]
+}
