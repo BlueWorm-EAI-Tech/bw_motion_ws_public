@@ -27,6 +27,7 @@ endif()
 install(DIRECTORY
   meshes
   urdf
+  rviz
   DESTINATION share/${PROJECT_NAME}
 )
 
