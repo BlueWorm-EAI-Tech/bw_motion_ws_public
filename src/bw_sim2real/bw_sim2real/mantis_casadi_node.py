@@ -65,9 +65,19 @@ class MantisCasadiNode(Node):
         marker.name = f"{side}_hand_ctrl"
         marker.scale = 0.25 
         
+        # 从齐次变换矩阵T中提取位置和姿态
         marker.pose.position.x = float(T[0,3])
         marker.pose.position.y = float(T[1,3])
         marker.pose.position.z = float(T[2,3])
+        
+        # 提取旋转并转换为四元数
+        rot_matrix = T[:3, :3]
+        r = R.from_matrix(rot_matrix)
+        quat = r.as_quat()  # [x, y, z, w]
+        marker.pose.orientation.x = float(quat[0])
+        marker.pose.orientation.y = float(quat[1])
+        marker.pose.orientation.z = float(quat[2])
+        marker.pose.orientation.w = float(quat[3])
         
         # ==========================================
         # 2. 添加中心实心球 (MOVE_3D)
@@ -102,6 +112,7 @@ class MantisCasadiNode(Node):
             ctrl.orientation.z = float(axis[2])
             ctrl.name = "move_" + str(axis)
             ctrl.interaction_mode = InteractiveMarkerControl.MOVE_AXIS
+            ctrl.independent_marker_orientation = True  # 关键：让控制轴跟随marker姿态
             marker.controls.append(ctrl)
             
         # ==========================================
@@ -115,6 +126,7 @@ class MantisCasadiNode(Node):
             ctrl.orientation.z = float(axis[2])
             ctrl.name = "rotate_" + str(axis)
             ctrl.interaction_mode = InteractiveMarkerControl.ROTATE_AXIS
+            ctrl.independent_marker_orientation = True  # 关键：让控制轴跟随marker姿态
             marker.controls.append(ctrl)
 
         # ==========================================
