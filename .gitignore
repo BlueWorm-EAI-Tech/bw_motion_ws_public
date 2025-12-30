@@ -16,7 +16,7 @@ MUJOCO_LOG.TXT
 
 # gemini-cli prompt
 GEMINI.md
-*.md
+
 !README.md
 
 frames*
