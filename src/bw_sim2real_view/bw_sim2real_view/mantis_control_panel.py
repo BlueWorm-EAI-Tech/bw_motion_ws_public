@@ -71,6 +71,16 @@ RIGHT_ARM_JOINTS = [
     "R_Wrist_Yaw_Joint",
 ]
 
+LEFT_GRIPPER_JOINTS = [
+    "L_Hand_R_Joint",
+    "L_Hand_L_Joint",
+]
+
+RIGHT_GRIPPER_JOINTS = [
+    "R_Hand_R_Joint",
+    "R_Hand_L_Joint",
+]
+
 # joint limits (radians). Keep consistent with previous mantis_gui_node.
 JOINT_LIMITS = {
     "L_Shoulder_Pitch_Joint": (-1.13, 1.75),
@@ -80,13 +90,17 @@ JOINT_LIMITS = {
     "L_Wrist_Roll_Joint": (-1.7, 1.7),
     "L_Wrist_Pitch_Joint": (-0.562, 0.562),
     "L_Wrist_Yaw_Joint": (-1.7, 1.7),
-    "R_Shoulder_Pitch_Joint": (-1.75, 1.13),
-    "R_Shoulder_Yaw_Joint": (-2.029, 0.213),
-    "R_Shoulder_Roll_Joint": (-0.82, 0.80),
+    "R_Shoulder_Pitch_Joint": (-1.13, 1.75),
+    "R_Shoulder_Yaw_Joint": (-0.213, 2.029),
+    "R_Shoulder_Roll_Joint": (-0.80, 0.82),
     "R_Elbow_Pitch_Joint": (-0.395, 1.012),
     "R_Wrist_Roll_Joint": (-1.7, 1.7),
     "R_Wrist_Pitch_Joint": (-0.562, 0.562),
     "R_Wrist_Yaw_Joint": (-1.7, 1.7),
+    "L_Hand_R_Joint": (0.0, 0.04),
+    "L_Hand_L_Joint": (0.0, 0.04),
+    "R_Hand_R_Joint": (0.0, 0.04),
+    "R_Hand_L_Joint": (0.0, 0.04),
 }
 
 
@@ -123,8 +137,59 @@ class ControlPanelWidget(QWidget):
         # --- GUI slider group ---
         gui_group = QGroupBox('GUI Sliders (publish /input/gui/joint_states)')
         gui_layout = QHBoxLayout()
-        gui_layout.addLayout(self._create_arm_slider_group('Left Arm', LEFT_ARM_JOINTS))
-        gui_layout.addLayout(self._create_arm_slider_group('Right Arm', RIGHT_ARM_JOINTS))
+        
+        # Left Arm + Gripper
+        l_layout = self._create_arm_slider_group('Left Arm', LEFT_ARM_JOINTS)
+        # Add Left Gripper Slider to Left Arm Layout
+        l_grip_row = QHBoxLayout()
+        l_grip_label = QLabel('L_Gripper')
+        l_grip_label.setFixedWidth(160)
+        l_grip_slider = QSlider()
+        l_grip_slider.setOrientation(1)
+        l_grip_slider.setRange(0, 400)  # 0.00 to 0.04 * 10000
+        l_grip_val = QLabel('0.00')
+        l_grip_val.setFixedWidth(45)
+        
+        def _on_l_grip_change(val):
+            real_val = val / 10000.0
+            l_grip_val.setText(f'{real_val:.3f}')
+            for j in LEFT_GRIPPER_JOINTS:
+                self.node.gui_joint_values[j] = float(real_val)
+        
+        l_grip_slider.valueChanged.connect(_on_l_grip_change)
+        l_grip_row.addWidget(l_grip_label)
+        l_grip_row.addWidget(l_grip_slider)
+        l_grip_row.addWidget(l_grip_val)
+        l_layout.addLayout(l_grip_row)
+        
+        gui_layout.addLayout(l_layout)
+
+        # Right Arm + Gripper
+        r_layout = self._create_arm_slider_group('Right Arm', RIGHT_ARM_JOINTS)
+        # Add Right Gripper Slider to Right Arm Layout
+        r_grip_row = QHBoxLayout()
+        r_grip_label = QLabel('R_Gripper')
+        r_grip_label.setFixedWidth(160)
+        r_grip_slider = QSlider()
+        r_grip_slider.setOrientation(1)
+        r_grip_slider.setRange(0, 400)
+        r_grip_val = QLabel('0.00')
+        r_grip_val.setFixedWidth(45)
+
+        def _on_r_grip_change(val):
+            real_val = val / 10000.0
+            r_grip_val.setText(f'{real_val:.3f}')
+            for j in RIGHT_GRIPPER_JOINTS:
+                self.node.gui_joint_values[j] = float(real_val)
+
+        r_grip_slider.valueChanged.connect(_on_r_grip_change)
+        r_grip_row.addWidget(r_grip_label)
+        r_grip_row.addWidget(r_grip_slider)
+        r_grip_row.addWidget(r_grip_val)
+        r_layout.addLayout(r_grip_row)
+
+        gui_layout.addLayout(r_layout)
+        
         gui_group.setLayout(gui_layout)
         root.addWidget(gui_group)
 
