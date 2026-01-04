@@ -14,7 +14,37 @@ colcon build
 source install/setup.zsh
 ```
 
-### 2. 目标主机准备（实机端）
+### 2. SDK 仿真预览模式（推荐入门）
+
+无需连接实机，在 RViz 或 Gazebo 中预览机器人动作：
+
+```bash
+# 终端 1: 启动仿真环境（二选一）
+cd ~/bw_motion_ws && source install/setup.bash
+
+# RViz 模式（默认，快速预览关节运动）
+ros2 launch bw_sim2real sdk_sim.launch.py
+
+# Gazebo 模式（物理仿真，支持底盘移动）
+ros2 launch bw_sim2real sdk_sim.launch.py use_gazebo:=true
+
+# 终端 2: 启动 Zenoh 桥接
+~/zenoh_ros2/zenoh-bridge-ros2dds -d 99
+
+# 终端 3: 运行 SDK 脚本
+cd ~/mantis
+python test_sim.py
+```
+
+**Launch 参数说明：**
+
+| 参数 | 默认值 | 说明 |
+|------|--------|------|
+| `use_gazebo` | `false` | 是否使用 Gazebo 物理仿真 |
+| `use_rviz` | `true` | 是否使用 RViz（Gazebo 模式下自动禁用） |
+| `world_name` | `empty.world` | Gazebo 世界文件名 |
+
+### 3. 目标主机准备（实机端）
 
 在目标主机（机器人端）上执行以下操作：
 
@@ -32,12 +62,14 @@ cd ~/bw_teleoperate_ws
 > - 确保 **禁用** `start_real.sh`（VR 遥操启动脚本），两种模式互相冲突
 > - Zenoh 相关配置请参考装机手册
 
-### 3. 本地启动（控制端）
+### 4. 本地启动（控制端）
 
 ```bash
 source install/setup.zsh
 ros2 launch bw_sim2real phase1_sim2real.launch.py enable_ik:=false enable_bridge:=true enable_rviz:=true
 ```
+
+> 💡 如果只需要 SDK 仿真预览（无需控制面板），请使用上面的 `sdk_sim.launch.py`
 
 启动后会打开：
 
