@@ -331,7 +331,7 @@
     name="L_Elbow_Pitch_Joint"
     type="revolute">
     <origin
-      xyz="0 -0.0140000000000004 -0.35448"
+      xyz="0 -0.0139999999999995 -0.35448"
       rpy="1.5707963267949 0.147258361384734 3.14159265358979" />
     <parent
       link="L_Shoulder_Roll_Link" />
@@ -744,7 +744,7 @@
     <child
       link="R_Shoulder_Yaw_Link" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 -1" />
     <limit
       lower="-1.04"
       upper="-0.08"
@@ -853,7 +853,7 @@
     name="R_Elbow_Pitch_Joint"
     type="revolute">
     <origin
-      xyz="0 -0.0140000000000004 -0.35448"
+      xyz="0 -0.0140000000000004 -0.354479999999999"
       rpy="1.5707963267949 0.147258361384736 3.14159265358979" />
     <parent
       link="R_Shoulder_Roll_Link" />
@@ -918,7 +918,7 @@
     <child
       link="R_Wrist_Roll_Link" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 -1" />
     <limit
       lower="-1.57"
       upper="1.57"
@@ -976,7 +976,7 @@
     <child
       link="R_Wrist_Pitch_Link" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 -1" />
     <limit
       lower="-0.52"
       upper="0.52"
@@ -1034,7 +1034,7 @@
     <child
       link="R_Wrist_Yaw_Link" />
     <axis
-      xyz="0 -0.0452652870134508 0.998975001584919" />
+      xyz="0 -0.0452652870134508 -0.998975001584919" />
     <limit
       lower="-1.57"
       upper="1.57"
@@ -1548,180 +1548,4 @@
     <axis
       xyz="0 0 -1" />
   </joint>
-  <!-- ======================================================= -->
-  <!-- 新增 ROS 2 Control 标签 (插入到 </robot> 之前)          -->
-  <!-- ======================================================= -->
-  <ros2_control name="MantisFakeSystem" type="system">
-    <hardware>
-      <!-- 使用 mock 组件模拟硬件，这样可以在没有真实机器人的情况下运行 -->
-      <plugin>mock_components/GenericSystem</plugin>
-    </hardware>
-    <joint name="base_footprint_joint">
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-
-    <!-- 1. 腰部关节 (Waist_Joint) 已补全 -->
-    <joint name="Waist_Joint">
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-
-    <!-- 2. 左臂关节 (请把左臂所有关节补全) -->
-    <!-- 左1 -->
-    <joint name="L_Shoulder_Pitch_Joint">
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 左2 -->
-    <joint name="L_Shoulder_Yaw_Joint">
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 左3 -->
-    <joint name="L_Shoulder_Roll_Joint">
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 左4 -->
-    <joint name="L_Elbow_Pitch_Joint">
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 左5 -->
-    <joint name="L_Wrist_Roll_Joint">
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 左6 -->
-    <joint name="L_Wrist_Pitch_Joint">
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 左7 -->
-    <joint name="L_Wrist_Yaw_Joint">
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 左8 -->
-    <joint name="L_Hand_L_Joint" >
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 左9 -->
-    <joint name="L_Hand_R_Joint" >
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-
-    <!-- 3. 右臂关节 (请把右臂所有关节补全) -->
-    <!-- 右1 -->
-    <joint name="R_Shoulder_Pitch_Joint" >
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 右2 -->
-    <joint name="R_Shoulder_Yaw_Joint" >
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 右3 -->
-    <joint name="R_Shoulder_Roll_Joint" >
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 右4 -->
-    <joint name="R_Elbow_Pitch_Joint" >
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 右5 -->
-    <joint name="R_Wrist_Roll_Joint" >
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 右6 -->
-    <joint name="R_Wrist_Pitch_Joint" >
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 右7 -->
-    <joint name="R_Wrist_Yaw_Joint" >
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 右8 -->
-    <joint name="R_Hand_L_Joint" >
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-    <!-- 右9 -->
-    <joint name="R_Hand_R_Joint" >
-      <command_interface name="position"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-    </joint>
-
-  </ros2_control>
-  <!-- ======================================================= -->
-
 </robot>
