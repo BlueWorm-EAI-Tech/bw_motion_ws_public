@@ -32,8 +32,8 @@ setup(
             'mantis_casadi_node = bw_sim2real.mantis_casadi_node:main',
             'mantis_playback_node = bw_sim2real.mantis_playback_node:main',
             'vel_config = bw_sim2real.vel_config:main',
-            'sdk_bridge_node = bw_sim2real.sdk_bridge_node:main',
-            'gazebo_bridge_node = bw_sim2real.gazebo_bridge_node:main',
+            'sdk_rviz_bridge_node = bw_sim2real.sdk_rviz_bridge_node:main',
+            'sdk_gazebo_bridge_node = bw_sim2real.sdk_gazebo_bridge_node:main',
         ],
     },
 )

@@ -28,21 +28,17 @@ ros2 launch bw_sim2real sdk_sim.launch.py
 # Gazebo 模式（物理仿真，支持底盘移动）
 ros2 launch bw_sim2real sdk_sim.launch.py use_gazebo:=true
 
-# 终端 2: 启动 Zenoh 桥接
-~/zenoh_ros2/zenoh-bridge-ros2dds -d 99
-
 # 终端 3: 运行 SDK 脚本
-cd ~/mantis
-python test_sim.py
 ```
 
 **Launch 参数说明：**
 
-| 参数 | 默认值 | 说明 |
-|------|--------|------|
-| `use_gazebo` | `false` | 是否使用 Gazebo 物理仿真 |
-| `use_rviz` | `true` | 是否使用 RViz（Gazebo 模式下自动禁用） |
-| `world_name` | `empty.world` | Gazebo 世界文件名 |
+
+| 参数         | 默认值        | 说明                                   |
+| ------------ | ------------- | -------------------------------------- |
+| `use_gazebo` | `false`       | 是否使用 Gazebo 物理仿真               |
+| `use_rviz`   | `true`        | 是否使用 RViz（Gazebo 模式下自动禁用） |
+| `world_name` | `empty.world` | Gazebo 世界文件名                      |
 
 ### 3. 目标主机准备（实机端）
 
@@ -51,10 +47,7 @@ python test_sim.py
 ```bash
 # 1) 启动远程桥接脚本
 cd ~/bw_teleoperate_ws
-./remote_bridge.sh
-
-# 2) 可选：启动 Zenoh 桥接以稳定通信（推荐）
-~/zenoh_ros2/zenoh-bridge-ros2dds -d 0
+./bw_motion_remote_bridge.sh
 ```
 
 > ⚠️ **注意**：

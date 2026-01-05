@@ -100,8 +100,8 @@ def launch_setup(context, *args, **kwargs):
     # 2. SDK Bridge Node（接收 Zenoh 消息，发布 /sdk/joint_states）
     nodes.append(Node(
         package='bw_sim2real',
-        executable='sdk_bridge_node',
-        name='sdk_bridge_node',
+        executable='sdk_rviz_bridge_node',
+        name='sdk_rviz_bridge_node',
         output='screen',
         parameters=[{'use_sim_time': use_gazebo}]
     ))
@@ -161,8 +161,8 @@ def launch_setup(context, *args, **kwargs):
         # 3c. Gazebo Bridge Node（转发关节/底盘命令到 Gazebo）
         nodes.append(Node(
             package='bw_sim2real',
-            executable='gazebo_bridge_node',
-            name='gazebo_bridge_node',
+            executable='sdk_gazebo_bridge_node',
+            name='sdk_gazebo_bridge_node',
             output='screen',
             parameters=[{'use_sim_time': True}]
         ))
