@@ -45,15 +45,16 @@ ros2 launch bw_sim2real sdk_sim.launch.py use_gazebo:=true
 在目标主机（机器人端）上执行以下操作：
 
 ```bash
-# 1) 启动远程桥接脚本
-cd ~/bw_teleoperate_ws
-./bw_motion_remote_bridge.sh
-```
+# 1) 进入遥操作文件夹
+cd ~/bw_system_ws
 
-> ⚠️ **注意**：
->
-> - 确保 **禁用** `start_real.sh`（VR 遥操启动脚本），两种模式互相冲突
-> - Zenoh 相关配置请参考装机手册
+# 2) 修改.env文件
+# 修改文件中的内容不是终端运行
+RUN_MODE=motion_remote
+
+# 3) 重启docker容器
+docker compose restart
+```
 
 ### 4. 本地启动（控制端）
 

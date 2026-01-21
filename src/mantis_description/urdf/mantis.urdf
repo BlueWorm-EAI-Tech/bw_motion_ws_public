@@ -347,7 +347,7 @@
     </collision>
   </link>
   <joint name="R_Shoulder_Pitch_Joint" type="revolute">
-    <origin xyz="0.119415661636301 0.133000000337764 0.138469895775482" rpy="1.13289646330337 0.0818475244724988 1.53253534072457" />
+    <origin xyz="0.119415661636301 0.112951840620579 0.138469895775482" rpy="1.13289646330337 0.0818475244724988 1.53253534072457" />
     <parent link="Waist_Link" />
     <child link="R_Shoulder_Pitch_Link" />
     <axis xyz="0 0 1" />
@@ -376,7 +376,7 @@
     </collision>
   </link>
   <joint name="R_Shoulder_Yaw_Joint" type="revolute">
-    <origin xyz="-0.105087634007942 -0.00931875405517957 0.109999999999979" rpy="1.57079632679489 1.13446263104148 1.65924101328647" />
+    <origin xyz="-0.0851253117883655 -0.00746534000720467 0.109999999999979" rpy="1.57079632679489 1.13446263104148 1.65924101328647" />
     <parent link="R_Shoulder_Pitch_Link" />
     <child link="R_Shoulder_Yaw_Link" />
     <axis xyz="0 0 -1" />
@@ -434,7 +434,7 @@
     </collision>
   </link>
   <joint name="R_Elbow_Pitch_Joint" type="revolute">
-    <origin xyz="0 -0.0140000000000004 -0.354479999999999" rpy="1.5707963267949 0.147258361384736 3.14159265358979" />
+    <origin xyz="0 -0.0140000000000004 -0.354479999999999" rpy="1.5707963267949 -0.01000000000 3.14159265358979" />
     <parent link="R_Shoulder_Roll_Link" />
     <child link="R_Elbow_Pitch_Link" />
     <axis xyz="0 0 1" />
