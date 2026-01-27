@@ -52,8 +52,8 @@ cd ~/bw_system_ws
 # 修改文件中的内容不是终端运行
 RUN_MODE=motion_remote
 
-# 3) 重启docker容器
-docker compose restart
+# 3) 运行启动脚本
+./run.sh
 ```
 
 ### 4. 本地启动（控制端）
