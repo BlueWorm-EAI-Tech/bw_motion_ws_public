@@ -4,6 +4,10 @@
 
 本仓库核心目标是：把多种控制输入（GUI 滑条 / 交互式 IK / 文件关键帧回放）统一路由到同一个控制输出 `/ctrl/joint_target`，并让 TF（`robot_state_publisher`）稳定不断链。
 
+📚 [文档目录](docs/README.md) · [更新记录](RELEASE_NOTES.md)
+
+文档负责人：[@ACESUSUSU](https://github.com/ACESUSUSU)
+
 ## 快速开始
 
 ### 1. 编译工作空间
